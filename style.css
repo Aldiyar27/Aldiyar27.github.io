@@ -13,6 +13,7 @@
 #searchForm {
   margin-left: 44%;
   display: none;
+  /* display: none; */
   padding: 1%;
   margin-top: 8%;
   width: 11%;
@@ -1051,6 +1052,7 @@ h4 {
   font-size: 100%;
   cursor: pointer;
 }
+
 
 body {
   display: flex;
