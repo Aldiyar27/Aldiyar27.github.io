@@ -11,12 +11,12 @@
 <body class="not-loaded">
     <div class="night">
 
-      <form id="searchForm">
+      <div id="searchForm">
         <input type="text" id="searchInput"> <br>
-        <button id="searchButton">Search</button>
+        <button id="searchButton" >Search</button>
         <div id="errorContainer"></div>
         <div id="girlsContainer"></div>
-      </form>
+      </div>
       
     </div>
     <div class="flowers">
@@ -318,6 +318,17 @@
       </div>
     </div>
     <script src="app.js"></script>
+    <script>
+      function saveName() {
+        sessionStorage.clear();
+  
+        const name = document.getElementById('name-input').value;
+
+        sessionStorage.setItem('name', name);
+  
+        window.location.href = 'photo.html';
+      }
+    </script>
   </body>
 
 </html>
