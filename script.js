@@ -1,3 +1,36 @@
+async function showForm() {
+
+  const searchQuery = sessionStorage.getItem('name');
+  console.log(searchQuery);
+
+  const response = await fetch(`https://65ce2e5fc715428e8b402554.mockapi.io/girls?search=${searchQuery}`);
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch data');
+  }
+  const data = await response.json();
+  displayGirls(data);
+
+
+function displayGirls(girls) {
+  const girlsContainer = document.getElementById('image-container');
+
+  girls.forEach(girl => {
+    const girlDiv = document.createElement('div');
+    const girlImage = document.createElement('img');
+    girlImage.src = girl.photo;
+    girlImage.alt = girl.name;
+    girlImage.style.width = '400px';
+    girlImage.style.height = '400px';
+    girlImage.style.objectFit = 'cover';
+    girlDiv.appendChild(girlImage);
+    girlsContainer.appendChild(girlDiv);
+  });
+  document.getElementById("myForm").style.display = "block";
+}
+}
+
+setTimeout(showForm, 7000);
 
 "use strict";
 
