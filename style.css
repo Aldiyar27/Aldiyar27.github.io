@@ -11,8 +11,14 @@
 }
 
 #searchForm {
-  margin-left: 45%;
-  display: none;
+  margin-left: 44%;
+  /* display: none; */
+  padding: 1%;
+  margin-top: 8%;
+  width: 11%;
+  height: 10%;
+  background-color: #6bf0ff;
+
 }
 
 body {
@@ -1004,9 +1010,19 @@ mask-image: linear-gradient(to top, transparent 40%, #079097 80%) !important;
 }
 /*------------------------------------------------------------------------------------*/
 #searchForm {
-  margin-left: 32%;
-  display: none;
+  margin-left: 25%;
+  /* display: none; */
+  padding: 4%;
+  margin-top: 40%;
+  width: 50%;
+  height: 8%;
+  background-color: #6bf0ff;
+  
 }
+input{
+  width: 100%;
+}
+
 
 body {
   display: flex;
