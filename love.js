@@ -42,7 +42,8 @@ function Animacion() {
   ctx.clearRect(0, 0, cw, ch);
   
   ctx.fillStyle ="#777";
-  ctx.fillText("We LOVE YOU",cx,60);
+  ctx.fillText("We LOVE YOU",cx,80);
+  ctx.fillText("Girls 11 B",cx,140);
 
   
   
