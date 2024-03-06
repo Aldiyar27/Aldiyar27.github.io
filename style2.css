@@ -26,6 +26,22 @@
     z-index: 1;
   }
 
+  p{
+    margin-top: 3%;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: sans-serif;
+  }
+
+  img {
+    border-radius: 15px;
+  }
+
+  .form-container{
+    background-color: white;
+    border-radius: 15px;
+  }
+
   button{
     margin-top: 3%;
     margin-left: 8%;

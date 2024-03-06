@@ -10,24 +10,41 @@ async function showForm() {
   }
   const data = await response.json();
   displayGirls(data);
+  
+  const compliments = [
+    "Ты так красива, что я просто не могу отвести взгляд!",
+    "Ты — воплощение изящества и очарования!",
+    "Ты просто ослепительна!",
+    "Смотреть на тебя — одно удовольствие!",
+    "Твоя улыбка светит, как солнце!",
+    "Твоя улыбка так радует меня!",
+    "У тебя внешность как у ангела!",
+    "Этому миру нужны такие люди, как ты!",
+    "Ты неповторима и совершенна!",
+    "Я не устаю очаровываться тобой!",
+    "Ты совершенна такая, как есть!",
+    "Ты меня просто завораживаешь!",
+    "Ты мой источник вдохновения!"
+  ];
+  const randomCompliment = compliments[Math.floor(Math.random() * compliments.length)];
+  document.getElementById('compliment').textContent = randomCompliment;
 
-
-function displayGirls(girls) {
-  const girlsContainer = document.getElementById('image-container');
-
-  girls.forEach(girl => {
-    const girlDiv = document.createElement('div');
-    const girlImage = document.createElement('img');
-    girlImage.src = girl.photo;
-    girlImage.alt = girl.name;
-    girlImage.style.width = '400px';
-    girlImage.style.height = '400px';
-    girlImage.style.objectFit = 'cover';
-    girlDiv.appendChild(girlImage);
-    girlsContainer.appendChild(girlDiv);
-  });
-  document.getElementById("myForm").style.display = "block";
-}
+  function displayGirls(girls) {
+    const girlsContainer = document.getElementById('image-container');
+    
+    girls.forEach(girl => {
+      const girlDiv = document.createElement('div');
+      const girlImage = document.createElement('img');
+      girlImage.src = girl.photo;
+      girlImage.alt = girl.name;
+      girlImage.style.width = '400px';
+      girlImage.style.height = '400px';
+      girlImage.style.objectFit = 'cover';
+      girlDiv.appendChild(girlImage);
+      girlsContainer.appendChild(girlDiv);
+    });
+    document.getElementById("myForm").style.display = "block";
+  }
 }
 
 setTimeout(showForm, 7000);
