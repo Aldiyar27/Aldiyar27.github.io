@@ -1,252 +1,257 @@
-async function showForm() {
+var settings = {
+  particles: {
+    length: 5000,
+    duration: 4,
+    velocity: 80,
+    effect: -1.3,
+    size: 8,
+  },
+};
 
-  const searchQuery = sessionStorage.getItem('name');
-  console.log(searchQuery);
-
-  const response = await fetch(`https://65ce2e5fc715428e8b402554.mockapi.io/girls?search=${searchQuery}`);
-
-  if (!response.ok) {
-    throw new Error('Failed to fetch data');
+(function () {
+  var b = 0;
+  var c = ["ms", "moz", "webkit", "o"];
+  for (var a = 0; a < c.length && !window.requestAnimationFrame; ++a) {
+    window.requestAnimationFrame = window[c[a] + "RequestAnimationFrame"];
+    window.cancelAnimationFrame =
+      window[c[a] + "CancelAnimationFrame"] ||
+      window[c[a] + "CancelRequestAnimationFrame"];
   }
-  const data = await response.json();
-  displayGirls(data);
-  
-  const compliments = [
-    "Ты так красива, что я просто не могу отвести взгляд!",
-    "Ты — воплощение изящества и очарования!",
-    "Ты просто ослепительна!",
-    "Смотреть на тебя — одно удовольствие!",
-    "Твоя улыбка светит, как солнце!",
-    "Твоя улыбка так радует меня!",
-    "У тебя внешность как у ангела!",
-    "Этому миру нужны такие люди, как ты!",
-    "Ты неповторима и совершенна!",
-    "Я не устаю очаровываться тобой!",
-    "Ты совершенна такая, как есть!",
-    "Ты меня просто завораживаешь!",
-    "Ты мой источник вдохновения!"
-  ];
-  const randomCompliment = compliments[Math.floor(Math.random() * compliments.length)];
-  document.getElementById('compliment').textContent = randomCompliment;
-
-  function displayGirls(girls) {
-    const girlsContainer = document.getElementById('image-container');
-    
-    girls.forEach(girl => {
-      const girlDiv = document.createElement('div');
-      const girlImage = document.createElement('img');
-      girlImage.src = girl.photo;
-      girlImage.alt = girl.name;
-      girlImage.style.width = '400px';
-      girlImage.style.height = '400px';
-      girlImage.style.objectFit = 'cover';
-      girlDiv.appendChild(girlImage);
-      girlsContainer.appendChild(girlDiv);
-    });
-    document.getElementById("myForm").style.display = "block";
+  if (!window.requestAnimationFrame) {
+    window.requestAnimationFrame = function (h, e) {
+      var d = new Date().getTime();
+      var f = Math.max(0, 16 - (d - b));
+      var g = window.setTimeout(function () {
+        h(d + f);
+      }, f);
+      b = d + f;
+      return g;
+    };
   }
-}
-
-setTimeout(showForm, 7000);
-
-"use strict";
-
-!(function () {
-  function t() {
-    !(function () {
-      var t, g;
-      if (
-        ((o = l / 2),
-        (a = s / 2),
-        (n = c.create()),
-        (e = n.world),
-        (r = d.create({
-          element: document.body,
-          engine: n,
-          options: {
-            width: l,
-            height: s,
-            wireframes: !1,
-            background: "transparent",
-            pixelRatio: 1
-          }
-        })),
-        (i = u.create()),
-        u.run(i, n),
-        (n.gravity.scale = 0),
-        (n.gravity.x = 0),
-        (n.gravity.y = 0),
-        "undefined" != typeof fetch)
-      ) {
-        (t = function (t, e) {
-          return Array.prototype.slice.call(t.querySelectorAll(e));
-        }),
-          (g = function (t) {
-            return fetch(t)
-              .then(function (t) {
-                return t.text();
-              })
-              .then(function (t) {
-                return new window.DOMParser().parseFromString(
-                  t,
-                  "image/svg+xml"
-                );
-              });
-          })(svg_terrain).then(function (n) {
-            var r = t(n, "path"),
-              i = r.map(function (t) {
-                return v.pathToVertices(t, 30);
-              }),
-              l = y.fromVertices(
-                256,
-                200,
-                i,
-                {
-                  isStatic: !0,
-                  render: {
-                    fillStyle: "transparent",
-                    strokeStyle: "transparent",
-                    lineWidth: 1
-                  }
-                },
-                !0
-              );
-            h.add(e, l), (o = l.position.x), (a = l.position.y);
-          });
-        let n = null,
-          r = null;
-        g(svg_heart).then(function (e) {
-          n ||
-            ((r = t(e, "path").map(function (t) {
-              return v.pathToVertices(t, 50);
-            })),
-            (n = y.fromVertices(
-              o,
-              1.5 * a,
-              r,
-              {
-                restitution: 0,
-                friction: 0,
-                frictionStatic: 0,
-                frictionAir: 0,
-                mass: 20,
-                render: {
-                  lineWidth: 2
-                }
-              },
-              !0
-            )),
-            M.scale(n, 0.2, 0.2));
-        });
-        let i = function () {
-          let t = structuredClone(n);
-          (t.id = f.nextId()),
-            (t.position.x = o),
-            (t.position.y = 1.5 * a),
-            S.push(S.shift());
-          let r = S[0];
-          (t.render.fillStyle = r),
-            (t.render.strokeStyle = r),
-            t.parts.forEach(function (e, n) {
-              (t.parts[n].render.fillStyle = r),
-                (t.parts[n].render.strokeStyle = r);
-            }),
-            M.setAngle(t, Math.round(360 * Math.random()), !1),
-            M.setVelocity(t, {
-              x: f.random(-5, 5),
-              y: f.random(-5, -1)
-            }),
-            h.add(e, t);
-        };
-        setTimeout(function () {
-          let t = 0,
-            e = setInterval(() => {
-              i(), 2 == t && (clearInterval(e), (n = null), (r = null)), t++;
-            }, 780);
-        }, 220);
-      } else f.warn("Fetch is not available. Could not load SVG.");
-      let k = m.create(r.canvas),
-        x = p.create(n, {
-          mouse: k,
-          constraint: {
-            stiffness: 0.2,
-            render: {
-              visible: !1
-            }
-          }
-        });
-      h.add(e, x),
-        (r.mouse = k),
-        d.lookAt(r, {
-          min: {
-            x: 0,
-            y: 0
-          },
-          max: {
-            x: l,
-            y: s
-          }
-        }),
-        d.run(r);
-    })();
+  if (!window.cancelAnimationFrame) {
+    window.cancelAnimationFrame = function (d) {
+      clearTimeout(d);
+    };
   }
-  let e,
-    n,
-    r,
-    i,
-    o,
-    a,
-    l = 512,
-    s = 512,
-    c = (Matter.World, Matter.Engine),
-    d = Matter.Render,
-    u = Matter.Runner,
-    f = (Matter.Composites, Matter.Common),
-    p = Matter.MouseConstraint,
-    m = Matter.Mouse,
-    h = Matter.Composite,
-    y = (Matter.Vertices, Matter.Bodies),
-    M = Matter.Body,
-    v = (Matter.Events, Matter.Query, Matter.Svg),
-    g = [
-      "pink",
-      "deeppink",
-      "deeppink",
-      "hotpink",
-      "hotpink",
-      "lightpink",
-      "magenta",
-      "orchid"
-    ],
-    S = ["mediumvioletred", "crimson", "salmon"];
-  (window.onload = () => {
-    t();
-  }),
-    setTimeout(function () {
-      let t = 0,
-        n = setInterval(() => {
-          !(function () {
-            let t = f.choose(g);
-            const n = y.circle(o, a, 25, {
-              restitution: 0,
-              friction: 0,
-              frictionStatic: 0,
-              frictionAir: 0,
-              mass: 10,
-              render: {
-                fillStyle: t,
-                strokeStyle: t,
-                lineWidth: 0
-              }
-            });
-            M.setVelocity(n, {
-              x: f.random(-1, 1),
-              y: f.random(-1, 1)
-            }),
-              h.add(e, n);
-          })(),
-            60 == t && clearInterval(n),
-            t++;
-        }, 100);
-    }, 2e3);
 })();
+
+var Point = (function () {
+  function Point(x, y) {
+    this.x = typeof x !== "undefined" ? x : 0;
+    this.y = typeof y !== "undefined" ? y : 0;
+  }
+  Point.prototype.clone = function () {
+    return new Point(this.x, this.y);
+  };
+  Point.prototype.length = function (length) {
+    if (typeof length == "undefined") {
+      return Math.sqrt(this.x * this.x + this.y * this.y);
+    }
+    this.normalize();
+    this.x *= length;
+    this.y *= length;
+    return this;
+  };
+  Point.prototype.normalize = function () {
+    var length = this.length();
+    this.x /= length;
+    this.y /= length;
+    return this;
+  };
+  return Point;
+})();
+
+var Particle = (function () {
+  function Particle() {
+    this.position = new Point();
+    this.velocity = new Point();
+    this.acceleration = new Point();
+    this.age = 0;
+  }
+  Particle.prototype.initialize = function (x, y, dx, dy) {
+    this.position.x = x;
+    this.position.y = y;
+    this.velocity.x = dx;
+    this.velocity.y = dy;
+    this.acceleration.x = dx * settings.particles.effect;
+    this.acceleration.y = dy * settings.particles.effect;
+    this.age = 0;
+  };
+  Particle.prototype.update = function (deltaTime) {
+    this.position.x += this.velocity.x * deltaTime;
+    this.position.y += this.velocity.y * deltaTime;
+    this.velocity.x += this.acceleration.x * deltaTime;
+    this.velocity.y += this.acceleration.y * deltaTime;
+    this.age += deltaTime;
+  };
+  Particle.prototype.draw = function (context, image) {
+    function ease(t) {
+      return --t * t * t + 1;
+    }
+    var size = image.width * ease(this.age / settings.particles.duration);
+    context.globalAlpha = 1 - this.age / settings.particles.duration;
+    context.drawImage(
+      image,
+      this.position.x - size / 2,
+      this.position.y - size / 2,
+      size,
+      size
+    );
+  };
+  return Particle;
+})();
+
+var ParticlePool = (function () {
+  var particles,
+    firstActive = 0,
+    firstFree = 0,
+    duration = settings.particles.duration;
+
+  function ParticlePool(length) {
+    particles = new Array(length);
+    for (var i = 0; i < particles.length; i++) {
+      particles[i] = new Particle();
+    }
+  }
+  ParticlePool.prototype.add = function (x, y, dx, dy) {
+    particles[firstFree].initialize(x, y, dx, dy);
+    firstFree++;
+    if (firstFree == particles.length) firstFree = 0;
+    if (firstActive == firstFree) firstActive++;
+    if (firstActive == particles.length) firstActive = 0;
+  };
+  ParticlePool.prototype.update = function (deltaTime) {
+    var i;
+    if (firstActive < firstFree) {
+      for (i = firstActive; i < firstFree; i++) {
+        particles[i].update(deltaTime);
+      }
+    }
+    if (firstFree < firstActive) {
+      for (i = firstActive; i < particles.length; i++) {
+        particles[i].update(deltaTime);
+      }
+      for (i = 0; i < firstFree; i++) {
+        particles[i].update(deltaTime);
+      }
+    }
+    while (particles[firstActive].age >= duration && firstActive != firstFree) {
+      firstActive++;
+      if (firstActive == particles.length) firstActive = 0;
+    }
+  };
+  ParticlePool.prototype.draw = function (context, image) {
+    if (firstActive < firstFree) {
+      for (i = firstActive; i < firstFree; i++) {
+        particles[i].draw(context, image);
+      }
+    }
+    if (firstFree < firstActive) {
+      for (i = firstActive; i < particles.length; i++) {
+        particles[i].draw(context, image);
+      }
+      for (i = 0; i < firstFree; i++) {
+        particles[i].draw(context, image);
+      }
+    }
+  };
+  return ParticlePool;
+})();
+
+(function (canvas) {
+  var context = canvas.getContext("2d"),
+    particles = new ParticlePool(settings.particles.length),
+    particleRate = settings.particles.length / settings.particles.duration,
+    time;
+
+  function pointOnHeart(t) {
+    return new Point(
+      160 * Math.pow(Math.sin(t), 3),
+      130 * Math.cos(t) -
+        50 * Math.cos(2 * t) -
+        20 * Math.cos(3 * t) -
+        10 * Math.cos(4 * t) +
+        25
+    );
+  }
+
+  var image = (function () {
+    var canvas = document.createElement("canvas"),
+      context = canvas.getContext("2d");
+    canvas.width = settings.particles.size;
+    canvas.height = settings.particles.size;
+
+    function to(t) {
+      var point = pointOnHeart(t);
+      point.x =
+        settings.particles.size / 2 + (point.x * settings.particles.size) / 350;
+      point.y =
+        settings.particles.size / 2 - (point.y * settings.particles.size) / 350;
+      return point;
+    }
+
+    context.beginPath();
+    var t = -Math.PI;
+    var point = to(t);
+    context.moveTo(point.x, point.y);
+    while (t < Math.PI) {
+      t += 0.01;
+      point = to(t);
+      context.lineTo(point.x, point.y);
+    }
+    context.closePath();
+    context.fillStyle = "#f50b02";
+    context.fill();
+
+    var image = new Image();
+    image.src = canvas.toDataURL();
+    return image;
+  })();
+
+  function redirectToNextPage() {
+    // Замените 'next-page.html' на путь к вашему следующему HTML-файлу
+    window.location.href = "index2.html";
+  }
+
+  // Таймер на 10 секунд
+  setTimeout(redirectToNextPage, 7000);
+
+  // Обработчик клика на холсте
+  canvas.addEventListener("click", redirectToNextPage);
+
+  function render() {
+    requestAnimationFrame(render);
+
+    var newTime = new Date().getTime() / 1000,
+      deltaTime = newTime - (time || newTime);
+    time = newTime;
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    var amount = particleRate * deltaTime;
+    for (var i = 0; i < amount; i++) {
+      var pos = pointOnHeart(Math.PI - 2 * Math.PI * Math.random());
+      var dir = pos.clone().length(settings.particles.velocity);
+      particles.add(
+        canvas.width / 2 + pos.x,
+        canvas.height / 2 - pos.y,
+        dir.x,
+        -dir.y
+      );
+    }
+
+    particles.update(deltaTime);
+    particles.draw(context, image);
+  }
+
+  function onResize() {
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
+  }
+  window.onresize = onResize;
+
+  setTimeout(function () {
+    onResize();
+    render();
+  }, 10);
+})(document.getElementById("pinkboard"));

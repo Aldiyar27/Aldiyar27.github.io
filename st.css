@@ -1,0 +1,15 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black; /* Цвет фона страницы */
+  }
+
+  .centered-image {
+    max-width: 100%; 
+    max-height: 100vh; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень для фото */
+  }
