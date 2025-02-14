@@ -1,10 +1,111 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>heart aanimation</title>
-    <link rel="stylesheet" href="st.css" />
-  </head>
-  <body>
-    <img src="photo.png" alt="Описание фото" class="centered-image">
-  </body>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Наши воспоминания</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: black;
+      text-align: center;
+    }
+
+    .top-section {
+      height: 100vh; /* Занимает всю высоту экрана */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: black; /* Цвет фона верхнего блока */
+    }
+
+    .centered-image {
+      max-width: 100%; /* Максимальная ширина фото */
+      max-height: 100vh; /* Максимальная высота фото */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень для фото */
+    }
+
+    /* Стили для нижнего блока с воспоминаниями */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: rgb(235, 235, 235);
+      margin-bottom: 20px;
+    }
+
+    .memory {
+      margin-bottom: 40px;
+    }
+
+    .memory img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgb(235, 235, 235);
+      margin-top: 10px;
+    }
+
+    .memory p {
+      font-size: 1.2rem;
+      color: #555;
+      margin: 10px 0;
+    }
+    .large-photo p {
+      font-size: 1.2rem;
+      color: #555;
+      margin: 10px 0;
+    }
+
+
+    .large-photo {
+      margin-top: 40px;
+    }
+
+    .large-photo img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgb(235, 235, 235);
+    }
+  </style>
+</head>
+<body>
+  <!-- Верхний блок с фото по центру -->
+  <div class="top-section">
+    <img src="photo.png" alt="Фото по центру" class="centered-image">
+  </div>
+
+  <!-- Нижний блок с воспоминаниями -->
+  <div class="container">
+    <h1>Наши воспоминания</h1>
+
+    <!-- Первая фотография -->
+    <div class="memory">
+      <p>Помнишь нашу первую фотографию?</p>
+      <img src="1.jpeg" alt="Первая фотография">
+    </div>
+
+    <br><br>
+
+    <!-- Вторая фотография -->
+    <div class="memory">
+      <p>Первую прогулку вдвоем...</p>
+      <img src="video.gif" alt="Прогулка">
+    </div>
+
+    <br><br>
+    <!-- Большая фотография внизу -->
+    <div class="large-photo">
+      <p>Мини альбом</p>
+      <img src="5294215760270453965.jpg" alt="Большая фотография">
+    </div>
+  </div>
+</body>
 </html>
